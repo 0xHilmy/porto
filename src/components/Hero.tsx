@@ -1,3 +1,5 @@
+import profileImage from '../assets/profile.png';
+
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-[#545454] relative overflow-hidden">
@@ -12,7 +14,7 @@ const Hero = () => {
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '24px', paddingTop:'24px' }}>
+          <div style={{ display: 'flex', gap: '24px', paddingTop: '24px' }}>
             <a
               href="#works"
               style={{
@@ -67,7 +69,7 @@ const Hero = () => {
             {/* Profile Image Container with transparent background */}
             <div className="w-full h-full relative">
               <img
-                src="/src/assets/profile.png"
+                src={profileImage}
                 alt="Hilmy Profile"
                 className="w-full h-full object-contain object-top scale-[1.9]"
                 style={{
