@@ -1,17 +1,25 @@
 import { useState } from 'react';
+import about from '../assets/about/about.jpeg';
+import about1 from '../assets/about/about1.jpeg';
+import about2 from '../assets/about/about2.jpeg';
+import about3 from '../assets/about/about3.jpeg';
+import about4 from '../assets/about/about4.jpeg';
+import about5 from '../assets/about/about5.jpeg';
+import about6 from '../assets/about/about6.jpeg';
+import about7 from '../assets/about/about7.jpeg';
 
 const About = () => {
   const [currentPhoto, setCurrentPhoto] = useState(0);
 
   const photos = [
-    '/src/assets/about/about.jpeg',
-    '/src/assets/about/about1.jpeg',
-    '/src/assets/about/about2.jpeg',
-    '/src/assets/about/about3.jpeg',
-    '/src/assets/about/about4.jpeg',
-    '/src/assets/about/about5.jpeg',
-    '/src/assets/about/about6.jpeg',
-    '/src/assets/about/about7.jpeg'
+    about,
+    about1,
+    about2,
+    about3,
+    about4,
+    about5,
+    about6,
+    about7
   ];
 
   const nextPhoto = () => {
