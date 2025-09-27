@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react';
+import service1 from '../assets/service/service1-1.jpeg';
+import service2 from '../assets/service/service2.png';
+import service3 from '../assets/service/service3.jpeg';
+import service4 from '../assets/service/service4.jpeg';
 
 const Skills = () => {
   const [imageOrientations, setImageOrientations] = useState<{ [key: number]: 'portrait' | 'landscape' }>({});
@@ -8,25 +12,25 @@ const Skills = () => {
       number: '01',
       title: 'Custom IoT System Development',
       description: 'I design and build IoT systems using microcontrollers such as ESP32, Arduino etc, integrating various sensors to collect real-time data and display it through monitoring dashboards',
-      image: 'src/assets/service/service1-1.jpeg'
+      image: service1
     },
     {
       number: '02',
       title: 'Web Dashboard & Data Visualization (ReactJS)',
       description: 'I develop interactive and user-friendly web dashboards using ReactJS to visualize IoT and sensor data, complete with features like charts, tables, notifications, and API integrations.',
-      image: 'src/assets/service/service2.png'
+      image: service2
     },
     {
       number: '03',
       title: 'Embedded Systems & Hardware Integration',
       description: 'I create embedded systems by designing electronic circuits, programming microcontrollers, and integrating hardware with software to support measurement tools, data logging, and automation.',
-      image: 'src/assets/service/service3.jpeg'
+      image: service3
     },
     {
       number: '04',
       title: 'Instrumentation & Control Solutions',
       description: 'I provide solutions in instrumentation and control, including calibration, integration of measurement devices, and development of systems tailored for research, industrial applications, and meteorology.',
-      image: 'src/assets/service/service4.jpeg'
+      image: service4
     }
   ];
 

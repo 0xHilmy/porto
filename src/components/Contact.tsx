@@ -25,7 +25,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-[#10120f]">
-      <div style={{ maxWidth: '1280px', margin: '0 auto',paddingTop:'0px', paddingBottom:'64px', padding: '0px 16px' }} className="sm:px-8 lg:px-16">
+      <div style={{ maxWidth: '1280px', margin: '0 auto', paddingTop: '0px', paddingBottom: '64px', paddingLeft: '16px', paddingRight:'16px' }} className="sm:px-8 lg:px-16">
         <div style={{ marginBottom: '64px' }}>
           <h2 style={{ fontSize: '2.25rem', fontWeight: '300', color: 'white', marginBottom: '32px', letterSpacing: '0.05em' }} className="lg:text-5xl">CONTACT</h2>
         </div>
