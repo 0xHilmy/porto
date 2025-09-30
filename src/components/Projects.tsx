@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { projects } from '../data/projectsData'; // Pastikan path ini benar
+import type { CSSProperties } from 'react';
 
 // --- Custom Hook untuk mendeteksi lebar layar ---
 // Hook ini memantau lebar jendela browser dan mengembalikan nilainya.
@@ -16,7 +17,7 @@ const useWindowWidth = () => {
 
     // Menambahkan event listener saat komponen pertama kali dirender
     window.addEventListener('resize', handleResize);
-    
+
     // Cleanup: Menghapus event listener saat komponen di-unmount untuk mencegah memory leak
     return () => window.removeEventListener('resize', handleResize);
   }, []); // Array kosong berarti efek ini hanya berjalan sekali saat mount dan cleanup saat unmount
@@ -60,8 +61,8 @@ const Projects = () => {
   }, [currentProject]);
 
   // --- Kumpulan Style Objek Dinamis ---
-  
-  const headerDescriptionStyle = {
+
+  const headerDescriptionStyle: CSSProperties = {
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: '0.875rem',
     margin: '0',
@@ -70,40 +71,40 @@ const Projects = () => {
     marginLeft: isMobile ? '0' : 'auto',
   };
 
-  const projectContentWrapperStyle = {
+  const projectContentWrapperStyle: CSSProperties = {
     width: '100%',
     padding: isMobile ? '0 48px' : '0 80px',
   };
-  
-  const landscapeMediaLayoutStyle = {
-      display: isMobile ? 'flex' : 'grid',
-      flexDirection: isMobile ? 'column' : 'row',
-      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-      gap: '24px',
-      alignItems: 'start',
+
+  const landscapeMediaLayoutStyle: CSSProperties = {
+    display: isMobile ? 'flex' : 'grid',
+    flexDirection: isMobile ? 'column' : ('row' as const),
+    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+    gap: '24px',
+    alignItems: 'start',
   };
 
-  const reversedAspectRatioLayoutStyle = {
-      display: isMobile ? 'flex' : 'grid',
-      flexDirection: isMobile ? 'column-reverse' : undefined, // column-reverse di mobile
-      gridTemplateColumns: isMobile ? '1fr' : '1fr 300px',
-      gap: '32px',
-      alignItems: 'start',
-      width: '100%',
-  };
-  
-  const defaultLayoutStyle = {
-      display: isMobile ? 'flex' : 'grid',
-      flexDirection: isMobile ? 'column' : undefined,
-      gridTemplateColumns: isMobile ? '1fr' : '300px 1fr',
-      gap: '32px',
-      alignItems: 'start',
-      width: '100%',
+  const reversedAspectRatioLayoutStyle: CSSProperties = {
+    display: isMobile ? 'flex' : 'grid',
+    flexDirection: isMobile ? ('column-reverse' as const) : undefined,
+    gridTemplateColumns: isMobile ? '1fr' : '1fr 300px',
+    gap: '32px',
+    alignItems: 'start',
+    width: '100%',
   };
 
-  const navButtonStyle = {
+  const defaultLayoutStyle: CSSProperties = {
+    display: isMobile ? 'flex' : 'grid',
+    flexDirection: isMobile ? ('column' as const) : undefined,
+    gridTemplateColumns: isMobile ? '1fr' : '300px 1fr',
+    gap: '32px',
+    alignItems: 'start',
+    width: '100%',
+  };
+
+  const navButtonStyle: CSSProperties = {
     position: 'absolute',
-    zIndex: '10',
+    zIndex: 10,
     width: isMobile ? '40px' : '50px',
     height: isMobile ? '40px' : '50px',
     border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -117,7 +118,7 @@ const Projects = () => {
     borderRadius: '50%'
   };
 
-  const mediaContainerStyle = {
+  const mediaContainerStyle: CSSProperties = {
     width: '100%',
     borderRadius: '12px',
     overflow: 'hidden',
@@ -127,14 +128,14 @@ const Projects = () => {
     transition: 'transform 0.3s ease',
   };
 
-  const imageStyle = {
+  const imageStyle: CSSProperties = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
     transition: 'transform 0.5s ease',
   };
-  
-  const videoStyle = {
+
+  const videoStyle: CSSProperties = {
     width: '100%',
     height: '100%',
     objectFit: 'cover'
@@ -156,9 +157,9 @@ const Projects = () => {
 
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', minHeight: '400px' }}>
           <button onClick={prevProject} style={{ ...navButtonStyle, left: 0 }}>
-             <svg style={{ width: '24px', height: '24px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-             </svg>
+            <svg style={{ width: '24px', height: '24px' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
 
           <div style={projectContentWrapperStyle}>
@@ -169,47 +170,47 @@ const Projects = () => {
 
               <div style={{ width: '100%', maxWidth: '1000px' }}>
                 {projects[currentProject].isLandscape ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
-                        <div style={landscapeMediaLayoutStyle}>
-                            <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
-                                <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle}/>
-                            </div>
-                            <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
-                                <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
-                                    <source src={projects[currentProject].video} type="video/mp4" />
-                                </video>
-                            </div>
-                        </div>
-                        <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+                    <div style={landscapeMediaLayoutStyle}>
+                      <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
+                        <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle} />
+                      </div>
+                      <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
+                        <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
+                          <source src={projects[currentProject].video} type="video/mp4" />
+                        </video>
+                      </div>
                     </div>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
+                  </div>
                 ) : projects[currentProject].isReversedAspectRatio ? (
-                    <div style={reversedAspectRatioLayoutStyle}>
-                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', justifyContent: 'space-between' }}>
-                             <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
-                                 <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle}/>
-                             </div>
-                             <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
-                         </div>
-                         <div style={{ ...mediaContainerStyle, aspectRatio: '9/16' }}>
-                             <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
-                                 <source src={projects[currentProject].video} type="video/mp4" />
-                             </video>
-                         </div>
+                  <div style={reversedAspectRatioLayoutStyle}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', justifyContent: 'space-between' }}>
+                      <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
+                        <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle} />
+                      </div>
+                      <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
                     </div>
+                    <div style={{ ...mediaContainerStyle, aspectRatio: '9/16' }}>
+                      <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
+                        <source src={projects[currentProject].video} type="video/mp4" />
+                      </video>
+                    </div>
+                  </div>
                 ) : (
-                    <div style={defaultLayoutStyle}>
-                         <div style={{ ...mediaContainerStyle, aspectRatio: '9/16' }}>
-                            <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle}/>
-                         </div>
-                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', justifyContent: 'space-between' }}>
-                              <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
-                                  <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
-                                     <source src={projects[currentProject].video} type="video/mp4" />
-                                  </video>
-                              </div>
-                              <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
-                         </div>
+                  <div style={defaultLayoutStyle}>
+                    <div style={{ ...mediaContainerStyle, aspectRatio: '9/16' }}>
+                      <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle} />
                     </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', justifyContent: 'space-between' }}>
+                      <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
+                        <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
+                          <source src={projects[currentProject].video} type="video/mp4" />
+                        </video>
+                      </div>
+                      <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
+                    </div>
+                  </div>
                 )}
               </div>
 
