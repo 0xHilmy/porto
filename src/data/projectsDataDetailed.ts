@@ -10,7 +10,13 @@ import project1Image7 from '../assets/projects/project1-image-7.png';
 import project1Image8 from '../assets/projects/project1-image-8.png';
 import project1VideoUrl from '../assets/projects/project1-video.mp4?url';
 import project2Image from '../assets/projects/project2-image.jpeg';
+import project2Image1 from '../assets/projects/project2-image-1.png';
+import project2Image2 from '../assets/projects/project2-image-2.jpeg';
+import project2Image3 from '../assets/projects/project2-image-3.jpeg';
+import project2Image4 from '../assets/projects/project2-image-4.png';
+import project2Image5 from '../assets/projects/project2-image-5.jpeg';
 import project2VideoUrl from '../assets/projects/project2-video.mp4?url';
+import project2VideoUrl1 from '../assets/projects/project2-video-1.mp4?url';
 import project3Image from '../assets/projects/project3-image.jpeg';
 import project3VideoUrl from '../assets/projects/project3-video.mp4?url';
 import project4Image from '../assets/projects/project4-image.jpeg';
@@ -147,7 +153,7 @@ export const projects: Project[] = [
                 caption: 'Testing process',
                 description: 'The stepper motor mount was designed to rotate the azimuth and elevation screws of the theodolite. A shaft coupling was used to connect the stepper motor to the theodolite, specifically a flange coupling adapted with bolt and nut holes to fit the theodolite screws. To secure the stepper motor in place, a 3D-printed holder made of PLA filament was employed. The mount was designed to follow the circular shape of the screw arm, ensuring a strong and stable grip.'
             }
-            
+
         ]
     },
     {
@@ -156,51 +162,62 @@ export const projects: Project[] = [
         image: project2Image,
         video: project2VideoUrl,
         description: 'An unmanned aerial vehicle (UAV) with a mission to monitor air quality in areas that are difficult to reach, such as forest fires. This UAV is built with a fixed-wing aircraft configuration and uses a Pixhawk flight controller.',
-        technologies: ['Pixhawk', 'MQ7 Sensor', 'ZH03B Sensor', 'React.js', 'JavaScript', 'Arduino', 'C++', 'WiFi Communication'],
+        technologies: ['Pixhawk', 'MQ7 Sensor', 'ZH03B Sensor', 'React.js', 'JavaScript', 'ESP32'],
         features: [
             'Fixed-wing UAV configuration for extended flight time',
             'CO monitoring using MQ7 sensor',
             'PM2.5 monitoring using ZH03B sensor',
             'Real-time data transmission to ground station',
             'Web application for data monitoring',
-            'Autonomous flight capabilities'
+            'Autonomous flight capabilities using Pixhawk Flight Controller'
         ],
         challenges: [
             'Integrating multiple sensors while maintaining flight stability',
             'Ensuring reliable data transmission during flight',
-            'Optimizing power consumption for extended missions',
             'Developing robust flight control algorithms'
         ],
         results: [
             'Successfully monitored air quality in remote forest areas',
-            'Achieved 2+ hours flight endurance',
             'Implemented real-time data streaming to web application',
-            'Won recognition at KRTI 2023 competition'
         ],
-        duration: '8 months',
-        teamSize: '5 members',
-        role: 'Electronics & Software Developer',
+        duration: '6 months',
+        teamSize: '6 members',
+        role: 'Lead Electronics & Software Developer',
         gallery: [
             {
                 id: 1,
-                thumbnail: project2Image,
-                fullSize: project2Image,
+                thumbnail: project2Image5,
+                fullSize: project2Image5,
                 caption: 'AQMU Fixed-Wing UAV',
                 description: 'Complete air quality monitoring UAV with integrated CO and PM2.5 sensors, designed for forest fire monitoring missions.'
             },
             {
                 id: 2,
-                thumbnail: 'https://via.placeholder.com/300x200/374151/ffffff?text=Sensor+Array',
-                fullSize: 'https://via.placeholder.com/1200x800/374151/ffffff?text=Sensor+Array+Full',
-                caption: 'Air Quality Sensor Integration',
-                description: 'MQ7 CO sensor and ZH03B PM2.5 sensor integrated with Pixhawk flight controller for real-time air quality monitoring.'
+                thumbnail: project2Image1,
+                fullSize: project2Image1,
+                caption: 'Web-Based Data Visualization Dashboard',
+                description: 'The data displayed on the website dashboard includes air quality parameters such as PM2.5, PM10, Carbon Monoxide (CO), Temperature, Relative Humidity (RH), and Altitude. The information is presented in both labels and graphs. Additionally, there is a visualization of aircraft movement using the U-Blox M8N GPS module.'
             },
             {
                 id: 3,
-                thumbnail: 'https://via.placeholder.com/300x200/374151/ffffff?text=Flight+Test',
-                fullSize: 'https://via.placeholder.com/1200x800/374151/ffffff?text=Flight+Test+Full',
-                caption: 'Field Testing Operations',
-                description: 'UAV conducting air quality monitoring flight tests in forest areas, demonstrating 2+ hours flight endurance capability.'
+                thumbnail: project2Image2,
+                fullSize: project2Image2,
+                caption: 'Team Member at Bun Yamin Air Force Base, Lampung',
+                description: ''
+            },
+            {
+                id: 4,
+                thumbnail: project2Image3,
+                fullSize: project2Image3,
+                caption: 'Myself holding AQMU UAV',
+                description: 'Captured moment holding the AQMU UAV before flight testing.'
+            },
+            {
+                id: 5,
+                thumbnail: project2Image4,
+                fullSize: project2VideoUrl1,
+                caption: 'AQMU Flight Demonstration Video',
+                description: 'Flight demonstration of the Air Quality Monitoring UAV showing takeoff, data collection flight patterns, and real-time air quality monitoring capabilities.'
             }
         ]
     },

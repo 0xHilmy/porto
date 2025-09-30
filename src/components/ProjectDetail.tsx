@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { projects, type GalleryImage } from '../data/projectsDataDetailed';
 
 const ProjectDetail = () => {
@@ -8,6 +8,11 @@ const ProjectDetail = () => {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   const project = projects.find(p => p.id === parseInt(id || '1'));
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
 
@@ -300,16 +305,29 @@ const ProjectDetail = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div style={{ position: 'relative', flexShrink: 0 }}>
-                  <img
-                    src={selectedImage.fullSize}
-                    alt={selectedImage.caption}
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      maxHeight: '60vh',
-                      objectFit: 'contain'
-                    }}
-                  />
+                  {selectedImage.fullSize.includes('.mp4') ? (
+                    <video
+                      src={selectedImage.fullSize}
+                      controls
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxHeight: '60vh',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={selectedImage.fullSize}
+                      alt={selectedImage.caption}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxHeight: '60vh',
+                        objectFit: 'contain'
+                      }}
+                    />
+                  )}
                   <button
                     onClick={() => setSelectedImage(null)}
                     style={{

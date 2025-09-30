@@ -176,9 +176,13 @@ const Projects = () => {
                         <img src={projects[currentProject].image} alt={projects[currentProject].title} style={imageStyle} />
                       </div>
                       <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
-                        <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
-                          <source src={projects[currentProject].video} type="video/mp4" />
-                        </video>
+                        {projects[currentProject].useImageAsVideo && projects[currentProject].secondImage ? (
+                          <img src={projects[currentProject].secondImage} alt={projects[currentProject].title} style={imageStyle} />
+                        ) : (
+                          <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
+                            <source src={projects[currentProject].video} type="video/mp4" />
+                          </video>
+                        )}
                       </div>
                     </div>
                     <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
@@ -192,9 +196,13 @@ const Projects = () => {
                       <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
                     </div>
                     <div style={{ ...mediaContainerStyle, aspectRatio: '9/16' }}>
-                      <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
-                        <source src={projects[currentProject].video} type="video/mp4" />
-                      </video>
+                      {projects[currentProject].useImageAsVideo && projects[currentProject].secondImage ? (
+                        <img src={projects[currentProject].secondImage} alt={projects[currentProject].title} style={imageStyle} />
+                      ) : (
+                        <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
+                          <source src={projects[currentProject].video} type="video/mp4" />
+                        </video>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -204,9 +212,13 @@ const Projects = () => {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', justifyContent: 'space-between' }}>
                       <div style={{ ...mediaContainerStyle, aspectRatio: '16/9' }}>
-                        <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
-                          <source src={projects[currentProject].video} type="video/mp4" />
-                        </video>
+                        {projects[currentProject].useImageAsVideo && projects[currentProject].secondImage ? (
+                          <img src={projects[currentProject].secondImage} alt={projects[currentProject].title} style={imageStyle} />
+                        ) : (
+                          <video ref={videoRef} key={`video-${currentProject}`} controls style={videoStyle} poster={projects[currentProject].image}>
+                            <source src={projects[currentProject].video} type="video/mp4" />
+                          </video>
+                        )}
                       </div>
                       <p style={{ color: 'rgba(255, 255, 255, 0.8)', textAlign: 'justify', lineHeight: '1.7' }}>{projects[currentProject].description}</p>
                     </div>
