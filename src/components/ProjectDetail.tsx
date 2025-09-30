@@ -38,6 +38,7 @@ const ProjectDetail = () => {
             </div>
             <button
               onClick={() => navigate('/')}
+              className="mobile-margin-right"
               style={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none', fontSize: '0.875rem', fontWeight: '300', letterSpacing: '0.05em', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}
             >
               BACK TO HOME
@@ -49,6 +50,46 @@ const ProjectDetail = () => {
       {/* Content */}
       <div style={{ paddingTop: '80px' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '64px 16px' }}>
+          <style>
+            {`
+              @media (max-width: 768px) {
+                .project-content-flex {
+                  flex-direction: column !important;
+                  gap: 24px !important;
+                }
+                .project-image-container {
+                  flex: none !important;
+                  min-width: auto !important;
+                  max-width: 100% !important;
+                }
+                .project-description-container {
+                  flex: none !important;
+                  min-width: auto !important;
+                }
+                .gallery-grid {
+                  grid-template-columns: 1fr !important;
+                }
+                .contact-section {
+                  padding: 32px 16px !important;
+                }
+                .mobile-margin-right {
+                  margin-right: 16px !important;
+                }
+              }
+              @media (max-width: 480px) {
+                .gallery-grid {
+                  grid-template-columns: 1fr !important;
+                  gap: 16px !important;
+                }
+                .project-content-flex {
+                  gap: 16px !important;
+                }
+                .contact-section {
+                  padding: 24px 12px !important;
+                }
+              }
+            `}
+          </style>
           {/* Project Title */}
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
             <h1 style={{ fontSize: '2rem', fontWeight: '300', color: 'white', letterSpacing: '0.05em', marginBottom: '16px' }}>
@@ -58,9 +99,9 @@ const ProjectDetail = () => {
 
           {/* Project Content with Image and Description */}
           <div style={{ maxWidth: '1200px', margin: '0 auto', marginBottom: '64px' }}>
-            <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            <div className="project-content-flex" style={{ display: 'flex', gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
               {/* Project Image */}
-              <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
+              <div className="project-image-container" style={{ flex: '0 0 350px', minWidth: '280px', width: '100%', maxWidth: '350px' }}>
                 <img
                   src={project.image}
                   alt={project.title}
@@ -71,7 +112,7 @@ const ProjectDetail = () => {
                     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
                   }}
                 />
-                
+
                 {/* Project Info Cards */}
                 {(project.duration || project.teamSize || project.role) && (
                   <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -98,9 +139,9 @@ const ProjectDetail = () => {
               </div>
 
               {/* Project Description and Details */}
-              <div style={{ flex: '1', minWidth: '400px' }}>
+              <div className="project-description-container" style={{ flex: '1', minWidth: '280px', width: '100%' }}>
                 {/* Description */}
-                <div style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.8', textAlign: 'justify', marginBottom: '32px' }}>
+                <div style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.8', textAlign: 'left', marginBottom: '32px' }}>
                   {project.description}
                 </div>
 
@@ -181,7 +222,7 @@ const ProjectDetail = () => {
               <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: '300', marginBottom: '32px', textAlign: 'center', letterSpacing: '0.05em' }}>
                 Project Gallery
               </h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+              <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
                 {project.gallery.map((image) => (
                   <div
                     key={image.id}
@@ -291,8 +332,8 @@ const ProjectDetail = () => {
                     ×
                   </button>
                 </div>
-                <div 
-                  style={{ 
+                <div
+                  style={{
                     padding: '24px',
                     overflow: 'auto',
                     maxHeight: '30vh',
@@ -312,7 +353,7 @@ const ProjectDetail = () => {
 
           {/* Contact Section */}
           <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-            <div style={{ padding: '48px 24px', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
+            <div className="contact-section" style={{ padding: '48px 24px', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.02)' }}>
               <h2 style={{ fontSize: '2rem', fontWeight: '300', color: 'white', marginBottom: '24px', letterSpacing: '0.05em' }}>
                 Want to know the detail?
               </h2>
