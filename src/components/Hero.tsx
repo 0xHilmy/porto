@@ -46,6 +46,9 @@ const Hero = () => {
             flexDirection: 'column',
             gap: '32px',
             paddingTop: '40px', // 🔹 Tambahan padding atas tulisan
+            position: 'relative',
+            zIndex: 5,
+            order: 1, // Text always comes first
           }}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -73,11 +76,20 @@ const Hero = () => {
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '24px', paddingTop: '24px' }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: isSmall ? '24px' : '16px',
+              paddingTop: '24px',
+              position: 'relative',
+              zIndex: 10,
+              flexWrap: isSmall ? 'nowrap' : 'wrap'
+            }}
+          >
             <a
               href="#works"
               style={{
-                padding: '12px 32px',
+                padding: isSmall ? '12px 32px' : '16px 24px',
                 border: '1px solid rgba(255, 255, 255, 0.3)',
                 color: 'white',
                 textDecoration: 'none',
@@ -85,6 +97,13 @@ const Hero = () => {
                 letterSpacing: '0.05em',
                 transition: 'all 0.3s',
                 backgroundColor: 'transparent',
+                minHeight: '44px', // Minimum touch target size
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                userSelect: 'none',
+                WebkitTapHighlightColor: 'transparent',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'white';
@@ -93,14 +112,24 @@ const Hero = () => {
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
                 e.currentTarget.style.color = 'white';
+              }}
+              onTouchStart={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.color = 'black';
+              }}
+              onTouchEnd={(e) => {
+                setTimeout(() => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = 'white';
+                }, 150);
               }}
             >
               SEE WORKS
             </a>
             <a
-              href="#works"
+              href="#contact"
               style={{
-                padding: '12px 32px',
+                padding: isSmall ? '12px 32px' : '16px 24px',
                 border: '1px solid rgba(255, 255, 255, 0.3)',
                 color: 'white',
                 textDecoration: 'none',
@@ -108,6 +137,13 @@ const Hero = () => {
                 letterSpacing: '0.05em',
                 transition: 'all 0.3s',
                 backgroundColor: 'transparent',
+                minHeight: '44px', // Minimum touch target size
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                userSelect: 'none',
+                WebkitTapHighlightColor: 'transparent',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'white';
@@ -116,6 +152,16 @@ const Hero = () => {
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
                 e.currentTarget.style.color = 'white';
+              }}
+              onTouchStart={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.color = 'black';
+              }}
+              onTouchEnd={(e) => {
+                setTimeout(() => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = 'white';
+                }, 150);
               }}
             >
               CONTACT
@@ -131,15 +177,17 @@ const Hero = () => {
             justifyContent: 'center',
             alignItems: 'flex-start',
             paddingTop: '40px', // 🔹 Tambahan padding atas foto
+            order: 2, // Image always comes second
+            zIndex: 1,
           }}
         >
           <div
             style={{
               width: '100%',
-              maxWidth: '32rem',
-              height: '700px',
+              maxWidth: isLarge ? '32rem' : '24rem',
+              height: isLarge ? '700px' : '400px',
               position: 'relative',
-              marginTop: '-64px',
+              marginTop: isLarge ? '-64px' : '0px',
             }}
           >
             <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -151,9 +199,10 @@ const Hero = () => {
                   height: '100%',
                   objectFit: 'contain',
                   objectPosition: 'top',
-                  transform: 'scale(1.9)',
-                  paddingBottom: '100px',
+                  transform: isLarge ? 'scale(1.9)' : 'scale(2.5)',
+                  paddingBottom: isLarge ? '100px' : '50px',
                   background: 'transparent',
+                  pointerEvents: 'none', // Prevent image from blocking clicks
                 }}
               />
             </div>
