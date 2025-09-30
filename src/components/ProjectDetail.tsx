@@ -1,136 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { projects, type GalleryImage } from '../data/projectsDataDetailed';
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-  const projects = [
-    {
-      id: 1,
-      title: 'IoT Monitoring System',
-      image: 'https://via.placeholder.com/800x500/374151/ffffff?text=IoT+Monitoring+System',
-      fullDescription: `This comprehensive IoT monitoring system represents a cutting-edge solution for industrial applications, combining the power of modern web technologies with robust hardware integration.
-
-Built with React.js for the frontend and Node.js for the backend, the system provides real-time visualization of sensor data collected from various industrial equipment. The architecture includes:
-
-• Real-time data streaming using WebSocket connections
-• RESTful API for device management and historical data
-• MongoDB database for efficient data storage and retrieval
-• MQTT protocol for reliable device communication
-• Responsive dashboard compatible with desktop and mobile devices
-
-Key features include automated alert systems that notify operators of critical conditions, customizable dashboards for different user roles, and comprehensive reporting tools for data analysis. The system has been successfully deployed in manufacturing environments, reducing downtime by 30% and improving operational efficiency.
-
-The project showcases expertise in full-stack development, IoT protocols, database design, and real-time systems architecture.`
-    },
-    {
-      id: 2,
-      title: 'Smart Home Automation',
-      image: 'https://via.placeholder.com/800x500/374151/ffffff?text=Smart+Home+Automation',
-      fullDescription: `A sophisticated smart home automation platform that seamlessly integrates multiple IoT devices into a unified control system. This project demonstrates advanced skills in both hardware integration and modern web development.
-
-The system architecture includes:
-
-• React-based web application with intuitive user interface
-• Node.js backend with Express.js framework
-• Real-time device control using WebSocket technology
-• Integration with popular IoT protocols (Zigbee, Z-Wave, WiFi)
-• Mobile-responsive design for smartphone and tablet control
-• Voice control integration with popular assistants
-
-Features implemented include automated lighting control based on occupancy and time schedules, climate control with learning algorithms that adapt to user preferences, security system integration with real-time notifications, and energy monitoring with detailed consumption analytics.
-
-The platform supports over 50 different device types and includes a plugin architecture for easy expansion. Users report average energy savings of 25% and improved home security through intelligent automation rules.`
-    },
-    {
-      id: 3,
-      title: 'Embedded Weather Station',
-      image: 'https://via.placeholder.com/800x500/374151/ffffff?text=Weather+Station',
-      fullDescription: `An advanced embedded weather monitoring system that combines precision hardware sensors with modern web technologies to create a comprehensive environmental monitoring solution.
-
-Hardware components include:
-
-• Custom PCB design with ESP32 microcontroller
-• Multiple environmental sensors (temperature, humidity, pressure, wind speed, rainfall)
-• Solar power system with battery backup
-• Weatherproof enclosure design
-• Long-range wireless communication (LoRaWAN)
-
-Software architecture features:
-
-• Embedded C++ firmware for sensor data collection
-• Real-time data transmission to cloud servers
-• React.js web dashboard for data visualization
-• Historical data analysis with trend predictions
-• Mobile app for remote monitoring
-• API integration with weather services
-
-The system provides accurate meteorological data with 99.5% uptime, supports multiple deployment locations, and includes predictive analytics for weather pattern analysis. Data is collected every 30 seconds and transmitted to the cloud platform for processing and storage.
-
-This project demonstrates expertise in embedded systems design, PCB development, firmware programming, and full-stack web development.`
-    },
-    {
-      id: 4,
-      title: 'Industrial Data Analytics',
-      image: 'https://via.placeholder.com/800x500/374151/ffffff?text=Industrial+Analytics',
-      fullDescription: `A powerful industrial data analytics platform that leverages machine learning algorithms to provide predictive maintenance insights and performance optimization for manufacturing equipment.
-
-Core technologies and features:
-
-• Python-based machine learning pipeline using TensorFlow and scikit-learn
-• React.js frontend with advanced data visualization using D3.js
-• Node.js backend with PostgreSQL database for time-series data
-• Real-time data processing using Apache Kafka
-• Docker containerization for scalable deployment
-• RESTful APIs for third-party system integration
-
-Machine learning capabilities include:
-
-• Predictive maintenance algorithms that forecast equipment failures
-• Anomaly detection for identifying unusual operational patterns
-• Performance optimization recommendations based on historical data
-• Automated report generation with actionable insights
-• Custom alerting system for critical conditions
-
-The platform processes over 1 million data points daily from various industrial sensors and has successfully predicted equipment failures with 85% accuracy, resulting in significant cost savings through preventive maintenance. The system supports integration with existing SCADA systems and provides ROI tracking for maintenance decisions.
-
-Implementation has led to 40% reduction in unplanned downtime and 25% decrease in maintenance costs across deployed facilities.`
-    },
-    {
-      id: 5,
-      title: 'Web3 DApp Platform',
-      image: 'https://via.placeholder.com/800x500/374151/ffffff?text=Web3+DApp+Platform',
-      fullDescription: `A decentralized application (DApp) platform built on blockchain technology, specifically designed for secure and transparent data sharing in IoT device networks. This project represents the intersection of blockchain technology, IoT, and modern web development.
-
-Blockchain architecture:
-
-• Smart contracts developed in Solidity for Ethereum network
-• IPFS integration for decentralized file storage
-• Web3.js integration for blockchain interactions
-• MetaMask wallet integration for user authentication
-• Gas optimization techniques for cost-effective transactions
-
-Frontend and backend technologies:
-
-• React.js with TypeScript for type-safe development
-• Next.js for server-side rendering and optimization
-• Node.js backend with Express.js framework
-• MongoDB for off-chain data storage
-• WebSocket connections for real-time updates
-
-Key features include:
-
-• Decentralized identity management for IoT devices
-• Secure data sharing with cryptographic verification
-• Token-based incentive system for data contributors
-• Transparent audit trails for all transactions
-• Cross-chain compatibility for multiple blockchain networks
-
-The platform enables IoT device owners to monetize their data while maintaining privacy and security through blockchain technology. Smart contracts ensure fair compensation and data integrity, while the decentralized architecture eliminates single points of failure.
-
-Early adoption has shown 60% improvement in data security and 35% increase in data sharing participation compared to traditional centralized platforms.`
-    }
-  ];
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   const project = projects.find(p => p.id === parseInt(id || '1'));
 
@@ -176,32 +51,264 @@ Early adoption has shown 60% improvement in data security and 35% increase in da
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '64px 16px' }}>
           {/* Project Title */}
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h1 style={{ fontSize: '3rem', fontWeight: '300', color: 'white', letterSpacing: '0.05em', marginBottom: '16px' }}>
+            <h1 style={{ fontSize: '2rem', fontWeight: '300', color: 'white', letterSpacing: '0.05em', marginBottom: '16px' }}>
               {project.title}
             </h1>
           </div>
 
-          {/* Project Image */}
-          <div style={{ marginBottom: '48px', textAlign: 'center' }}>
-            <img
-              src={project.image}
-              alt={project.title}
-              style={{
-                width: '100%',
-                maxWidth: '800px',
-                height: 'auto',
-                borderRadius: '8px',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
-              }}
-            />
-          </div>
+          {/* Project Content with Image and Description */}
+          <div style={{ maxWidth: '1200px', margin: '0 auto', marginBottom: '64px' }}>
+            <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+              {/* Project Image */}
+              <div style={{ flex: '0 0 350px', minWidth: '300px' }}>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
+                  }}
+                />
+                
+                {/* Project Info Cards */}
+                {(project.duration || project.teamSize || project.role) && (
+                  <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {project.duration && (
+                      <div style={{ padding: '12px 16px', backgroundColor: 'rgba(255, 255, 255, 0.05)', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                        <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.875rem', marginBottom: '4px' }}>Duration</div>
+                        <div style={{ color: 'white', fontSize: '0.95rem' }}>{project.duration}</div>
+                      </div>
+                    )}
+                    {project.teamSize && (
+                      <div style={{ padding: '12px 16px', backgroundColor: 'rgba(255, 255, 255, 0.05)', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                        <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.875rem', marginBottom: '4px' }}>Team Size</div>
+                        <div style={{ color: 'white', fontSize: '0.95rem' }}>{project.teamSize}</div>
+                      </div>
+                    )}
+                    {project.role && (
+                      <div style={{ padding: '12px 16px', backgroundColor: 'rgba(255, 255, 255, 0.05)', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                        <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.875rem', marginBottom: '4px' }}>My Role</div>
+                        <div style={{ color: 'white', fontSize: '0.95rem' }}>{project.role}</div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
 
-          {/* Project Description */}
-          <div style={{ maxWidth: '800px', margin: '0 auto', marginBottom: '64px' }}>
-            <div style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
-              {project.fullDescription}
+              {/* Project Description and Details */}
+              <div style={{ flex: '1', minWidth: '400px' }}>
+                {/* Description */}
+                <div style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.8', textAlign: 'justify', marginBottom: '32px' }}>
+                  {project.description}
+                </div>
+
+                {/* Technologies */}
+                {project.technologies && project.technologies.length > 0 && (
+                  <div style={{ marginBottom: '32px' }}>
+                    <h3 style={{ color: 'white', fontSize: '1.25rem', fontWeight: '500', marginBottom: '16px', letterSpacing: '0.025em' }}>
+                      Technologies Used
+                    </h3>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          style={{
+                            padding: '6px 12px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            color: 'rgba(255, 255, 255, 0.9)',
+                            borderRadius: '16px',
+                            fontSize: '0.875rem',
+                            border: '1px solid rgba(255, 255, 255, 0.2)'
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Features */}
+                {project.features && project.features.length > 0 && (
+                  <div style={{ marginBottom: '32px' }}>
+                    <h3 style={{ color: 'white', fontSize: '1.25rem', fontWeight: '500', marginBottom: '16px', letterSpacing: '0.025em' }}>
+                      Key Features
+                    </h3>
+                    <ul style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.95rem', lineHeight: '1.6', paddingLeft: '20px' }}>
+                      {project.features.map((feature, index) => (
+                        <li key={index} style={{ marginBottom: '8px' }}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Challenges */}
+                {project.challenges && project.challenges.length > 0 && (
+                  <div style={{ marginBottom: '32px' }}>
+                    <h3 style={{ color: 'white', fontSize: '1.25rem', fontWeight: '500', marginBottom: '16px', letterSpacing: '0.025em' }}>
+                      Technical Challenges
+                    </h3>
+                    <ul style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.95rem', lineHeight: '1.6', paddingLeft: '20px' }}>
+                      {project.challenges.map((challenge, index) => (
+                        <li key={index} style={{ marginBottom: '8px' }}>{challenge}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Results */}
+                {project.results && project.results.length > 0 && (
+                  <div style={{ marginBottom: '32px' }}>
+                    <h3 style={{ color: 'white', fontSize: '1.25rem', fontWeight: '500', marginBottom: '16px', letterSpacing: '0.025em' }}>
+                      Results & Achievements
+                    </h3>
+                    <ul style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.95rem', lineHeight: '1.6', paddingLeft: '20px' }}>
+                      {project.results.map((result, index) => (
+                        <li key={index} style={{ marginBottom: '8px' }}>{result}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+
+          {/* Gallery Section */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div style={{ maxWidth: '1200px', margin: '0 auto', marginBottom: '64px' }}>
+              <h2 style={{ color: 'white', fontSize: '2rem', fontWeight: '300', marginBottom: '32px', textAlign: 'center', letterSpacing: '0.05em' }}>
+                Project Gallery
+              </h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+                {project.gallery.map((image) => (
+                  <div
+                    key={image.id}
+                    style={{
+                      cursor: 'pointer',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onClick={() => setSelectedImage(image)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }}
+                  >
+                    <img
+                      src={image.thumbnail}
+                      alt={image.caption}
+                      style={{
+                        width: '100%',
+                        height: '200px',
+                        objectFit: 'cover'
+                      }}
+                    />
+                    <div style={{ padding: '16px' }}>
+                      <h3 style={{ color: 'white', fontSize: '1.1rem', fontWeight: '500', marginBottom: '8px', letterSpacing: '0.025em' }}>
+                        {image.caption}
+                      </h3>
+                      <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem', lineHeight: '1.5', margin: 0 }}>
+                        {image.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Image Modal */}
+          {selectedImage && (
+            <div
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                zIndex: 1000,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '20px',
+                overflow: 'auto'
+              }}
+              onClick={() => setSelectedImage(null)}
+            >
+              <div
+                style={{
+                  maxWidth: '90vw',
+                  maxHeight: '90vh',
+                  backgroundColor: '#10120f',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden'
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div style={{ position: 'relative', flexShrink: 0 }}>
+                  <img
+                    src={selectedImage.fullSize}
+                    alt={selectedImage.caption}
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      maxHeight: '60vh',
+                      objectFit: 'contain'
+                    }}
+                  />
+                  <button
+                    onClick={() => setSelectedImage(null)}
+                    style={{
+                      position: 'absolute',
+                      top: '16px',
+                      right: '16px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      cursor: 'pointer',
+                      fontSize: '20px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div 
+                  style={{ 
+                    padding: '24px',
+                    overflow: 'auto',
+                    maxHeight: '30vh',
+                    flexGrow: 1
+                  }}
+                >
+                  <h3 style={{ color: 'white', fontSize: '1.25rem', fontWeight: '500', marginBottom: '12px', letterSpacing: '0.025em' }}>
+                    {selectedImage.caption}
+                  </h3>
+                  <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '1rem', lineHeight: '1.6', margin: 0 }}>
+                    {selectedImage.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Contact Section */}
           <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>

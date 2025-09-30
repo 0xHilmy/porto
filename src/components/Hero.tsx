@@ -1,16 +1,75 @@
+import { useState, useEffect } from 'react';
 import profileImage from '../assets/profile.png';
 
 const Hero = () => {
+  const [isLarge, setIsLarge] = useState(window.innerWidth >= 1024);
+  const [isSmall, setIsSmall] = useState(window.innerWidth >= 640);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLarge(window.innerWidth >= 1024);
+      setIsSmall(window.innerWidth >= 640);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-[#545454] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-        <div className="space-y-8">
-          <div className="space-y-6">
-            <h1 style={{ fontSize: '8rem', fontFamily: '"Bebas Neue", sans-serif', color: 'white', lineHeight: '1.1', letterSpacing: '0.05em' }} className="lg:text-8xl">
+    <section
+      id="home"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#545454',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          paddingLeft: isLarge ? '64px' : isSmall ? '32px' : '16px',
+          paddingRight: isLarge ? '64px' : isSmall ? '32px' : '16px',
+          display: 'grid',
+          gridTemplateColumns: isLarge ? '1fr 1fr' : '1fr',
+          gap: isLarge ? '64px' : '32px',
+          alignItems: 'center',
+        }}
+      >
+        {/* Left Content */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '32px',
+            paddingTop: '40px', // 🔹 Tambahan padding atas tulisan
+          }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <h1
+              style={{
+                fontSize: isLarge ? '8rem' : '3rem',
+                fontFamily: '"Bebas Neue", sans-serif',
+                color: 'white',
+                lineHeight: '1.1',
+                letterSpacing: '0.05em',
+              }}
+            >
               RIZQI HILMY
             </h1>
-            <p className="text-white/70 text-lg leading-relaxed max-w-md">
-              WELCOME TO MY PORTFOLIO. I AM HILMY AND YOU WILL FIND EVERYTHING ABOUT MY DEVELOPMENT JOURNEY AND SERVICES HERE.
+            <p
+              style={{
+                color: 'rgba(255,255,255,0.7)',
+                fontSize: '1.125rem',
+                lineHeight: '1.75rem',
+                maxWidth: '28rem',
+              }}
+            >
+              WELCOME TO MY PORTFOLIO. I AM HILMY AND YOU WILL FIND EVERYTHING
+              ABOUT MY DEVELOPMENT JOURNEY AND SERVICES HERE.
             </p>
           </div>
 
@@ -25,7 +84,7 @@ const Hero = () => {
                 fontSize: '0.875rem',
                 letterSpacing: '0.05em',
                 transition: 'all 0.3s',
-                backgroundColor: 'transparent'
+                backgroundColor: 'transparent',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'white';
@@ -48,7 +107,7 @@ const Hero = () => {
                 fontSize: '0.875rem',
                 letterSpacing: '0.05em',
                 transition: 'all 0.3s',
-                backgroundColor: 'transparent'
+                backgroundColor: 'transparent',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = 'white';
@@ -64,17 +123,37 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative flex justify-center items-start">
-          <div className="w-full max-w-lg h-[700px] relative -mt-16">
-            {/* Profile Image Container with transparent background */}
-            <div className="w-full h-full relative">
+        {/* Right Content */}
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            paddingTop: '40px', // 🔹 Tambahan padding atas foto
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '32rem',
+              height: '700px',
+              position: 'relative',
+              marginTop: '-64px',
+            }}
+          >
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
               <img
                 src={profileImage}
                 alt="Hilmy Profile"
-                className="w-full h-full object-contain object-top scale-[1.9]"
                 style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  objectPosition: 'top',
+                  transform: 'scale(1.9)',
                   paddingBottom: '100px',
-                  background: 'transparent'
+                  background: 'transparent',
                 }}
               />
             </div>

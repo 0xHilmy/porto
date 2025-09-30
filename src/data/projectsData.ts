@@ -20,6 +20,15 @@ export interface Project {
   secondImage?: string; // Optional second image for projects that use image instead of video
   useImageAsVideo?: boolean; // Optional property to use second image instead of video
   isReversedAspectRatio?: boolean; // Optional property for reversed aspect ratios (image 16:9, video 9:16)
+  // Additional detailed information
+  technologies?: string[];
+  features?: string[];
+  challenges?: string[];
+  results?: string[];
+  duration?: string;
+  teamSize?: string;
+  role?: string;
+  fullDescription?: string;
 }
 
 export const projects: Project[] = [
