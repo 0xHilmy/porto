@@ -56,7 +56,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: 'Air Quality Monitoring Device in Kalibaru Subdistrict, North Jakarta',
+    title: 'Air Quality Monitoring Device in Kalibaru Subdistrict, North Jakarta 2024',
     image: project4Image,
     video: 'https://via.placeholder.com/640x360/2d3748/ffffff?text=Analytics+Demo',
     description: 'This device is used to monitor air quality, implemented in Kalibaru Subdistrict, North Jakarta, in 2024. The observed parameters in this device are CO and PM2.5. It uses an ESP32 as the central system controller, a GP2Y1010AU0F sensor for PM2.5, and an MQ7 sensor for CO. The CO and PM2.5 data are then calculated into the Air Pollution Standard Index (ISPU) and converted into environmental pollution levels based on the regulations of the Ministry of Environment. The air quality parameters and their index interpretation are displayed on an LED matrix.',
